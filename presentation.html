@@ -325,10 +325,10 @@ Idelle Sablay
 </section>
 <section id="steps-for-visualization-in-r-find-real-estate-market-data" class="slide level2">
 <h2>Steps for Visualization in R (Find Real Estate Market Data)</h2>
-<p>Step 1: Choose Data Source</p>
+<p>Step 1: Choose Data Source <img data-src="GREIX.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-length="50%" alt="German Real Estate Index"></p>
 </section>
-<section id="german-real-estate-index" class="slide level2">
-<h2><img data-src="GREIX.png" class="quarto-figure quarto-figure-center" style="width:70.0%" data-length="50%" alt="German Real Estate Index"></h2>
+<section class="slide level2">
+
 <p>Step 2: Load Libraries</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-2"><a href=""></a><span class="fu">library</span>(dplyr)</span>
@@ -352,70 +352,78 @@ Idelle Sablay
 <span id="cb3-7"><a href=""></a>  <span class="fu">mutate</span>(</span>
 <span id="cb3-8"><a href=""></a>    <span class="co"># Ensure quarters are ordered correctly</span></span>
 <span id="cb3-9"><a href=""></a>    <span class="at">date =</span> <span class="fu">factor</span>(date, <span class="at">levels =</span> <span class="fu">unique</span>(date))</span>
-<span id="cb3-10"><a href=""></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Step 4: Plot</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> Price, <span class="at">color =</span> City, <span class="at">group =</span> City)) <span class="sc">+</span></span>
-<span id="cb4-2"><a href=""></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb4-3"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Single-family House Prices by City"</span>,</span>
-<span id="cb4-4"><a href=""></a>       <span class="at">x =</span> <span class="st">"Quarter"</span>,</span>
-<span id="cb4-5"><a href=""></a>       <span class="at">y =</span> <span class="st">"Price (€)"</span>) <span class="sc">+</span></span>
-<span id="cb4-6"><a href=""></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb4-7"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-10"><a href=""></a>  )</span>
+<span id="cb3-11"><a href=""></a></span>
+<span id="cb3-12"><a href=""></a><span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> Price, <span class="at">color =</span> City, <span class="at">group =</span> City)) <span class="sc">+</span></span>
+<span id="cb3-13"><a href=""></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb3-14"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Single-family House Prices by City"</span>,</span>
+<span id="cb3-15"><a href=""></a>       <span class="at">x =</span> <span class="st">"Quarter"</span>,</span>
+<span id="cb3-16"><a href=""></a>       <span class="at">y =</span> <span class="st">"Price (€)"</span>) <span class="sc">+</span></span>
+<span id="cb3-17"><a href=""></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb3-18"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section class="slide level2">
+
 
 <img data-src="Single-family%20House%20Prices%20by%20City.png" class="r-stretch quarto-figure-center"><p class="caption">Single-family House Prices by City</p></section>
 <section id="steps-for-visualization-in-r-find-download-and-load-geospatial-data" class="slide level2">
 <h2>Steps for Visualization in R (Find, Download and Load geospatial data)</h2>
 <p>Step 1: Download raw OSM data (osm.pbf) or shapefiles (.shp.zip)</p>
 <p><img data-src="Geoboundaries.png" class="quarto-figure quarto-figure-center" style="width:80.0%" data-length="50%" alt="Geoboundaries"> https://download.geofabrik.de/</p>
-<p>Step 2: Install additional packages</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"sf"</span>, <span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>, <span class="st">"readxl"</span>, <span class="st">"tidyr"</span>, <span class="st">"viridis"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Step 3: Load packages</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">library</span>(sf)</span>
-<span id="cb6-2"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb6-3"><a href=""></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb6-4"><a href=""></a><span class="fu">library</span>(readxl)</span>
-<span id="cb6-5"><a href=""></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb6-6"><a href=""></a><span class="fu">library</span>(viridis)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Step 4: Read the .xlsx file</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>df <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"C:/Users/sabla/OneDrive/Desktop/</span></span>
-<span id="cb7-2"><a href=""></a><span class="st">Hochschule Fresenius/1st Semester/</span></span>
-<span id="cb7-3"><a href=""></a><span class="st">Data Analysis for Decision Making/Presentation/</span></span>
-<span id="cb7-4"><a href=""></a><span class="st">GREIX_nominal.xlsx"</span>)</span>
-<span id="cb7-5"><a href=""></a></span>
-<span id="cb7-6"><a href=""></a>df_q3 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb7-7"><a href=""></a>  <span class="fu">filter</span>(date <span class="sc">==</span> <span class="st">"Q3 2025"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-8"><a href=""></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>date, <span class="at">names_to =</span> <span class="st">"City"</span>, <span class="at">values_to =</span> <span class="st">"Price"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Step 5: Extract the boundaries and join with housing data</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>germany_map <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"C:/Users/sabla/OneDrive/Desktop/</span></span>
-<span id="cb8-2"><a href=""></a><span class="st">Hochschule Fresenius/1st Semester/</span></span>
-<span id="cb8-3"><a href=""></a><span class="st">Data Analysis for Decision Making/</span></span>
-<span id="cb8-4"><a href=""></a><span class="st">Presentation/geoBoundaries-DEU-ADM2-all/</span></span>
-<span id="cb8-5"><a href=""></a><span class="st">geoBoundaries-DEU-ADM2_simplified.shp"</span>)  <span class="co"># Level 2 = districts</span></span>
-<span id="cb8-6"><a href=""></a></span>
-<span id="cb8-7"><a href=""></a><span class="fu">names</span>(germany_map)</span>
-<span id="cb8-8"><a href=""></a><span class="fu">unique</span>(germany_map<span class="sc">$</span>shapeName)</span>
-<span id="cb8-9"><a href=""></a><span class="fu">unique</span>(df_q3<span class="sc">$</span>City)</span>
-<span id="cb8-10"><a href=""></a></span>
-<span id="cb8-11"><a href=""></a>map_data <span class="ot">&lt;-</span> germany_map <span class="sc">%&gt;%</span></span>
-<span id="cb8-12"><a href=""></a>  <span class="fu">left_join</span>(df_q3, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"shapeName"</span> <span class="ot">=</span> <span class="st">"City"</span>))</span>
-<span id="cb8-13"><a href=""></a></span>
-<span id="cb8-14"><a href=""></a><span class="fu">ggplot</span>(map_data) <span class="sc">+</span></span>
-<span id="cb8-15"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Price), <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb8-16"><a href=""></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"plasma"</span>, <span class="at">na.value =</span> <span class="st">"gray90"</span>) <span class="sc">+</span></span>
-<span id="cb8-17"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Single-family House Prices (Q3 2025)"</span>,</span>
-<span id="cb8-18"><a href=""></a>       <span class="at">fill =</span> <span class="st">"Price (€)"</span>) <span class="sc">+</span></span>
-<span id="cb8-19"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="geospatial%20visual.png" style="width:80.0%" data-length="50%"></p>
-<figcaption>Geospatial Visualization</figcaption>
-</figure>
-</div>
 </section>
+<section class="slide level2">
+
+<p>Step 2: Install additional packages</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"sf"</span>, <span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>, <span class="st">"readxl"</span>, <span class="st">"tidyr"</span>, <span class="st">"viridis"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Step 3: Load packages</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">library</span>(sf)</span>
+<span id="cb5-2"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-3"><a href=""></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-4"><a href=""></a><span class="fu">library</span>(readxl)</span>
+<span id="cb5-5"><a href=""></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb5-6"><a href=""></a><span class="fu">library</span>(viridis)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Step 4: Read the .xlsx file</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>df <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"C:/Users/sabla/OneDrive/Desktop/</span></span>
+<span id="cb6-2"><a href=""></a><span class="st">Hochschule Fresenius/1st Semester/</span></span>
+<span id="cb6-3"><a href=""></a><span class="st">Data Analysis for Decision Making/Presentation/</span></span>
+<span id="cb6-4"><a href=""></a><span class="st">GREIX_nominal.xlsx"</span>)</span>
+<span id="cb6-5"><a href=""></a></span>
+<span id="cb6-6"><a href=""></a>df_q3 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href=""></a>  <span class="fu">filter</span>(date <span class="sc">==</span> <span class="st">"Q3 2025"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href=""></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>date, <span class="at">names_to =</span> <span class="st">"City"</span>, <span class="at">values_to =</span> <span class="st">"Price"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section class="slide level2">
+
+<p>Step 5: Extract the boundaries and join with housing data</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>germany_map <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"C:/Users/sabla/OneDrive/Desktop/</span></span>
+<span id="cb7-2"><a href=""></a><span class="st">Hochschule Fresenius/1st Semester/</span></span>
+<span id="cb7-3"><a href=""></a><span class="st">Data Analysis for Decision Making/</span></span>
+<span id="cb7-4"><a href=""></a><span class="st">Presentation/geoBoundaries-DEU-ADM2-all/</span></span>
+<span id="cb7-5"><a href=""></a><span class="st">geoBoundaries-DEU-ADM2_simplified.shp"</span>)  <span class="co"># Level 2 = districts</span></span>
+<span id="cb7-6"><a href=""></a></span>
+<span id="cb7-7"><a href=""></a><span class="fu">names</span>(germany_map)</span>
+<span id="cb7-8"><a href=""></a><span class="fu">unique</span>(germany_map<span class="sc">$</span>shapeName)</span>
+<span id="cb7-9"><a href=""></a><span class="fu">unique</span>(df_q3<span class="sc">$</span>City)</span>
+<span id="cb7-10"><a href=""></a></span>
+<span id="cb7-11"><a href=""></a>map_data <span class="ot">&lt;-</span> germany_map <span class="sc">%&gt;%</span></span>
+<span id="cb7-12"><a href=""></a>  <span class="fu">left_join</span>(df_q3, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"shapeName"</span> <span class="ot">=</span> <span class="st">"City"</span>))</span>
+<span id="cb7-13"><a href=""></a></span>
+<span id="cb7-14"><a href=""></a><span class="fu">ggplot</span>(map_data) <span class="sc">+</span></span>
+<span id="cb7-15"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Price), <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb7-16"><a href=""></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"plasma"</span>, <span class="at">na.value =</span> <span class="st">"gray90"</span>) <span class="sc">+</span></span>
+<span id="cb7-17"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Single-family House Prices (Q3 2025)"</span>,</span>
+<span id="cb7-18"><a href=""></a>       <span class="at">fill =</span> <span class="st">"Price (€)"</span>) <span class="sc">+</span></span>
+<span id="cb7-19"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="geospatial%20visual.png" style="width:80.0%" data-length="50%" class="r-stretch quarto-figure-center"><p class="caption">Geospatial Visualization</p></section>
 <section id="exercise" class="slide level2">
 <h2>Exercise</h2>
-<p>Load the real estate market data in the Q2 2025. What are the changes? <img data-src="geospatial%20visual%20q2.png" class="quarto-figure quarto-figure-center" style="width:80.0%" data-length="50%" alt="Geospatial Visualization"></p>
-</section>
+<p>Load the real estate market data in the Q2 2025. What are the changes?</p>
+
+<img data-src="geospatial%20visual%20q2.png" style="width:50.0%" data-length="50%" class="r-stretch quarto-figure-center"><p class="caption">Geospatial Visualization</p></section>
 <section id="thank-you" class="title-slide slide level1 center">
 <h1>Thank you!</h1>
 

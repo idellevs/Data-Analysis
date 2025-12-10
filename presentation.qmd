@@ -65,8 +65,8 @@ https://www.attomdata.com/news/attom-insights/best-apis-real-estate/ (ATTOM Data
 ## Steps for Visualization in R (Find Real Estate Market Data)
 
 Step 1: Choose Data Source
-
 ![German Real Estate Index](GREIX.png){width=70% length=50% fig-align="center"}
+
 ---
 
 Step 2: Load Libraries
@@ -100,10 +100,7 @@ df_long <- df %>%
     # Ensure quarters are ordered correctly
     date = factor(date, levels = unique(date))
   )
-```
 
-Step 4: Plot
-```r
 ggplot(df_long, aes(x = date, y = Price, color = City, group = City)) +
   geom_line(size = 1) +
   labs(title = "Single-family House Prices by City",
@@ -112,6 +109,7 @@ ggplot(df_long, aes(x = date, y = Price, color = City, group = City)) +
   theme_minimal(base_size = 12) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+---
 
 ![Single-family House Prices by City](Single-family House Prices by City.png)
 
@@ -121,6 +119,8 @@ Step 1: Download raw OSM data (osm.pbf) or shapefiles (.shp.zip)
 
 ![Geoboundaries](Geoboundaries.png){width=80% length=50% fig-align="center"}
 https://download.geofabrik.de/
+
+---
 
 Step 2: Install additional packages
 
@@ -150,6 +150,7 @@ df_q3 <- df %>%
   filter(date == "Q3 2025") %>%
   pivot_longer(-date, names_to = "City", values_to = "Price")
 ```
+---
 
 Step 5: Extract the boundaries and join with housing data
 
@@ -174,11 +175,14 @@ ggplot(map_data) +
        fill = "Price (€)") +
   theme_minimal()
 ```
+---
+
 ![Geospatial Visualization](geospatial visual.png){width=80% length=50% fig-align="center"}
 
 ## Exercise
 Load the real estate market data in the Q2 2025. What are the changes?
-![Geospatial Visualization](geospatial visual q2.png){width=80% length=50% fig-align="center"}
+
+![Geospatial Visualization](geospatial visual q2.png){width=50% length=50% fig-align="center"}
 
 
 # Thank you!
