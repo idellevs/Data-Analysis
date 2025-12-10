@@ -116,7 +116,8 @@ ggplot(df_long, aes(x = date, y = Price, color = City, group = City)) +
 
 Step 1: Download raw OSM data (osm.pbf) or shapefiles (.shp.zip)
 
-![Geoboundaries](Geoboundaries.png){width=80% length=50% fig-align="center"}
+![Geoboundaries](geoboundaries.png){width=80% length=50% fig-align="center"}
+
 https://download.geofabrik.de/
 
 ---
