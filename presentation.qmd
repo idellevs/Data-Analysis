@@ -63,7 +63,6 @@ https://www.attomdata.com/news/attom-insights/best-apis-real-estate/ (ATTOM Data
 | raster    | Work with raster data (grids)    | Heatmap of housing density         | Population density or land-use data         |
 
 ## Steps for Visualization in R (Find Real Estate Market Data)
-
 Step 1: Choose Data Source
 ![German Real Estate Index](GREIX.png){width=70% length=50% fig-align="center"}
 
