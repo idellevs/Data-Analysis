@@ -1,0 +1,184 @@
+---
+title: "Geospatial Visualization with R Using Real Estate Market Data"
+subtitle: "Data Analysis for Decision Making (WS 2025/26)"
+author: 
+ - name: "Idelle Sablay"
+   affiliations: "Fresenius University of Applied Sciences"
+   email: "sablay.idelle@stud.hs-fresenius.de"
+   corresponding: true
+   address: |
+      Hochschule Fresenius
+
+author-note: |
+  Correspondence concerning this article should be addressed to  
+  Idelle Sablay, Hochschule Fresenius.  
+  Email: sablay.idelle@stud.hs-fresenius.de.
+   
+format:
+  revealjs:        # HTML slides
+    slide-number: true
+    theme: simple
+    pdf: true       # enables ?print-pdf export for slides
+  apaquarto-pdf: default   # APA-styled PDF handout
+  
+floatsintext: true
+---
+
+## Introduction
+
+''Geospatial visualization'' refers to information that specifies the spatial position of something on the Earth’s surface and describes their associated characteristics. It usually combines three parts: the location (such as coordinates on a map), details about the thing or event (its features or characteristics), and time (when it happened or how long it lasted).
+
+Importance: By mapping property data, geospatial visualization aids in our understanding of real estate markets.
+
+Objective: To utilize R in turning real estate market data into visual representations.
+
+## Data Sources of Real Estate Market Data
+
+- Government Open Data Portals<br>
+https://www.govdata.de/ (GovData Germany)<br>
+https://www.statistikportal.de/de/open-data (Statistikportal.de)<br>
+https://offenedaten-koeln.de/ (Cologne Open Data Portal)<br>
+
+- Public APIs (Real Estate Platforms)<br>
+https://www.zillowgroup.com/developers/ (Zillow Group APIs))<br>
+https://www.attomdata.com/news/attom-insights/best-apis-real-estate/ (ATTOM Data API)<br>
+
+## R tools for Geospatial Visualization
+
+| Package   | Purpose                          | Example Visualization              | Best Real Estate Data Use                  |
+|-----------|----------------------------------|------------------------------------|--------------------------------------------|
+| ggplot2   | General plotting | Scatter map of property prices     | Property listings with latitude/longitude   ||
+| sf        | Modern spatial data handling (vector data)        | Convert property points into spatial objects | Raw property coordinates, shapefiles of districts |
+---
+
+| Package   | Purpose                          | Example Visualization              | Best Real Estate Data Use                  |
+|-----------|----------------------------------|------------------------------------|--------------------------------------------|
+| leaflet   | Interactive web maps             | Clickable map of rental listings   | Real estate ads with location + price       |
+| tmap      | Thematic maps (static/interactive) | Choropleth map of average rent per district | Aggregated rent or price per neighborhood   |
+---
+
+| Package   | Purpose                          | Example Visualization              | Best Real Estate Data Use                  |
+|-----------|----------------------------------|------------------------------------|--------------------------------------------|
+| maps      | Quick access to world/country maps | Base map of Germany or Cologne     | Background maps for property overlays       |
+| raster    | Work with raster data (grids)    | Heatmap of housing density         | Population density or land-use data         |
+
+## Steps for Visualization in R (Find Real Estate Market Data)
+
+Step 1: Choose Data Source
+
+![German Real Estate Index](GREIX.png){width=70% length=50% fig-align="center"}
+---
+
+Step 2: Load Libraries
+
+```r
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+``` 
+Step 3: Import the Excel File
+
+```r
+df <- read_excel("C:/Users/sabla/OneDrive/Desktop/
+Hochschule Fresenius/1st Semester/
+Data Analysis for Decision Making/Presentation/
+GREIX_nominal.xlsx")
+``` 
+---
+
+Step 4: Plot
+
+```r
+df_long <- df %>%
+  pivot_longer(
+    cols = -date,                # all columns except 'date'
+    names_to = "City",
+    values_to = "Price"
+  ) %>%
+  mutate(
+    # Ensure quarters are ordered correctly
+    date = factor(date, levels = unique(date))
+  )
+```
+
+Step 4: Plot
+```r
+ggplot(df_long, aes(x = date, y = Price, color = City, group = City)) +
+  geom_line(size = 1) +
+  labs(title = "Single-family House Prices by City",
+       x = "Quarter",
+       y = "Price (€)") +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+![Single-family House Prices by City](Single-family House Prices by City.png)
+
+## Steps for Visualization in R (Find, Download and Load geospatial data)
+
+Step 1: Download raw OSM data (osm.pbf) or shapefiles (.shp.zip)
+
+![Geoboundaries](Geoboundaries.png){width=80% length=50% fig-align="center"}
+https://download.geofabrik.de/
+
+Step 2: Install additional packages
+
+```r
+install.packages(c("sf", "ggplot2", "dplyr", "readxl", "tidyr", "viridis"))
+```
+Step 3: Load packages
+
+```r
+library(sf)
+library(ggplot2)
+library(dplyr)
+library(readxl)
+library(tidyr)
+library(viridis)
+``` 
+
+Step 4: Read the .xlsx file
+
+```r
+df <- readxl::read_excel("C:/Users/sabla/OneDrive/Desktop/
+Hochschule Fresenius/1st Semester/
+Data Analysis for Decision Making/Presentation/
+GREIX_nominal.xlsx")
+
+df_q3 <- df %>%
+  filter(date == "Q3 2025") %>%
+  pivot_longer(-date, names_to = "City", values_to = "Price")
+```
+
+Step 5: Extract the boundaries and join with housing data
+
+```r
+germany_map <- st_read("C:/Users/sabla/OneDrive/Desktop/
+Hochschule Fresenius/1st Semester/
+Data Analysis for Decision Making/
+Presentation/geoBoundaries-DEU-ADM2-all/
+geoBoundaries-DEU-ADM2_simplified.shp")  # Level 2 = districts
+
+names(germany_map)
+unique(germany_map$shapeName)
+unique(df_q3$City)
+
+map_data <- germany_map %>%
+  left_join(df_q3, by = c("shapeName" = "City"))
+
+ggplot(map_data) +
+  geom_sf(aes(fill = Price), color = "white") +
+  scale_fill_viridis_c(option = "plasma", na.value = "gray90") +
+  labs(title = "Single-family House Prices (Q3 2025)",
+       fill = "Price (€)") +
+  theme_minimal()
+```
+![Geospatial Visualization](geospatial visual.png){width=80% length=50% fig-align="center"}
+
+## Exercise
+Load the real estate market data in the Q2 2025. What are the changes?
+![Geospatial Visualization](geospatial visual q2.png){width=80% length=50% fig-align="center"}
+
+
+# Thank you!

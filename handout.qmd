@@ -1,0 +1,87 @@
+---
+title: "Geospatial Visualization with R Using Real Estate Market Data"
+
+author: 
+ - name: "Idelle Sablay"
+   affiliations: "Fresenius University of Applied Sciences"
+   email: "sablay.idelle@stud.hs-fresenius.de"
+   corresponding: true
+   
+abstract: 
+  "Geospatial visualization provides powerful tools for understanding how location influences economic and social phenomena. In the context of real estate markets, spatial analysis reveals patterns in property values, highlights regional disparities, and supports evidence‑based decision making for investors, policymakers, and consumers. This presentation demonstrates how R can be leveraged to transform raw real estate data into meaningful geographic insights. Using packages such as **sf**, **ggplot2**, and **tmap**, we illustrate methods for preparing spatial datasets, generating maps, and identifying price hotspots across different regions. The workflow emphasizes reproducibility and transparency, ensuring that analyses can be adapted to diverse market contexts. By integrating geospatial visualization into real estate research, stakeholders gain a clearer understanding of market dynamics and can make more informed strategic choices."
+  
+keywords: 
+  - Geospatial visualization
+  - R programming
+  - Real estate market
+  - Spatial analysis
+  - Data visualization
+
+format:
+  apaquarto-html: 
+    embed-resources: true
+    toc: true
+    toc-location: left
+    number-sections: true
+    code-tools: true
+  apaquarto-pdf:
+    toc: true
+    number-sections: true
+
+navbar:
+  left:
+    - text: "Handout (HTML)"
+      href: handout.html
+    - text: "Handout (PDF)"
+      href: handout.pdf
+    - text: "Presentation"
+      href: presentation.html
+
+
+
+bibliography: References.bib
+
+
+---
+# Introduction
+
+''Geospatial data'' refers to information that specifies the spatial position of something on the Earth’s surface and describes their associated characteristics. It usually combines three parts: the location (such as coordinates on a map), details about the thing or event (its features or characteristics), and time (when it happened or how long it lasted).(@IBM).
+
+''Geospatial analytics'' involves examining geographically referenced data to identify underlying patterns, trends, and meaningful insights.(@UMW)
+
+''Geospatial visualization" 
+
+## Principles of Geospatial Visualization
+
+
+## Examples  of Geospatial Visualization
+
+
+
+## Types of Real Estate Market Data
+
+- Property Listings Data (addresses, prices, property type, size)
+- Rental Market Data (monthly rent, vacancy rates, neighborhood attributes)
+- Transaction History (sale dates, prices, buyer/seller info)
+- Geographic/Demographic Data (census, income levels, population density)
+- Construction & Development Data (new projects, zoning, permits)
+- Mortgage & Interest Rate Data (loan terms, rate trends)
+
+# Tools in R
+# Visualization Techniques
+
+	Basic maps: plotting property points on a map.
+• 	Choropleth maps: shading regions by average price.
+• 	Heatmaps: density of listings or price hotspots.
+• 	Example R snippet:
+
+
+# Data Preparation of Real Estate Market Data
+
+## Case Study 1: Housing Market in German Cities 
+
+
+
+# References
+
+

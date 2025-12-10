@@ -1,0 +1,23 @@
+---
+  title: "Geospatial Visualization with R Using Real Estate Market Data"
+  subtitle: "Data Analysis for Decision-Making (WS 2025/26)"
+  author: "Idelle Sablay"
+  format: 
+    html:
+      title-block-banner: true
+
+---
+
+## Quick Links
+- Handout
+  - [HTML File](handout.html)
+  - [PDF File](handout.pdf)
+  - [Quarto File](handout.qmd)
+
+- Presentation
+  - [HTML File](presentation.html)
+  - [PDF File](presentation.pdf)
+  - [Quarto File](presentation.qmd)
+
+
+

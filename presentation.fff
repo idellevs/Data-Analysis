@@ -1,0 +1,50 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+
+\caption{German Real Estate Index}
+
+{\centering \includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{GREIX.png}
+
+}
+
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+
+\caption{Single-family House Prices by City}
+
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{Single-family House Prices by City.png}}
+
+}
+
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+
+\caption{Geospatial Visualization}
+
+{\centering \includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{geospatial visual.png}
+
+}
+
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[H]
+
+\caption{Geospatial Visualization}
+
+{\centering \includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{geospatial visual q2.png}
+
+}
+
+\end{figure*}
