@@ -38,7 +38,6 @@ navbar:
       href: presentation.html
 
 
-
 bibliography: References.bib
 
 
@@ -49,7 +48,7 @@ bibliography: References.bib
 
 ''Geospatial analytics'' involves examining geographically referenced data to identify underlying patterns, trends, and meaningful insights.(@UMW)
 
-''Geospatial visualization" 
+
 
 ## Principles of Geospatial Visualization
 
@@ -80,7 +79,7 @@ bibliography: References.bib
 
 ## Case Study 1: Housing Market in German Cities 
 
-
+dgdfgdfgdg
 
 # References
 
