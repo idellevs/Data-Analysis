@@ -181,7 +181,7 @@ ggplot(map_data) +
 ## Exercise
 Load the real estate market data in the Q2 2025. What are the changes?
 
-![Geospatial Visualization](geospatial visual q2.png){width=50% length=50% fig-align="center"}
+![Geospatial Visualization](geospatial visual q2.png){width=80% length=50% fig-align="center"}
 
 
 # Thank you!
