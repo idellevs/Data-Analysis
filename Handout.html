@@ -2282,17 +2282,15 @@ border-bottom: none;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
+  <li><a href="#geospatial-information" id="toc-geospatial-information" class="nav-link active" data-scroll-target="#geospatial-information"><span class="header-section-number">1</span> Geospatial Information</a></li>
+  <li><a href="#gis-in-property-valuation" id="toc-gis-in-property-valuation" class="nav-link" data-scroll-target="#gis-in-property-valuation"><span class="header-section-number">2</span> GIS in property valuation</a></li>
+  <li><a href="#spatial-evaluation-methods" id="toc-spatial-evaluation-methods" class="nav-link" data-scroll-target="#spatial-evaluation-methods"><span class="header-section-number">3</span> Spatial evaluation methods</a>
   <ul class="collapse">
-  <li><a href="#principles-of-geospatial-visualization" id="toc-principles-of-geospatial-visualization" class="nav-link" data-scroll-target="#principles-of-geospatial-visualization"><span class="header-section-number">1.1</span> Principles of Geospatial Visualization</a></li>
-  <li><a href="#examples-of-geospatial-visualization" id="toc-examples-of-geospatial-visualization" class="nav-link" data-scroll-target="#examples-of-geospatial-visualization"><span class="header-section-number">1.2</span> Examples of Geospatial Visualization</a></li>
-  <li><a href="#types-of-real-estate-market-data" id="toc-types-of-real-estate-market-data" class="nav-link" data-scroll-target="#types-of-real-estate-market-data"><span class="header-section-number">1.3</span> Types of Real Estate Market Data</a></li>
+  <li><a href="#spatial-econometric-techniques" id="toc-spatial-econometric-techniques" class="nav-link" data-scroll-target="#spatial-econometric-techniques"><span class="header-section-number">3.1</span> Spatial Econometric techniques</a></li>
   </ul></li>
-  <li><a href="#tools-in-r" id="toc-tools-in-r" class="nav-link" data-scroll-target="#tools-in-r"><span class="header-section-number">2</span> Tools in R</a></li>
-  <li><a href="#visualization-techniques" id="toc-visualization-techniques" class="nav-link" data-scroll-target="#visualization-techniques"><span class="header-section-number">3</span> Visualization Techniques</a></li>
-  <li><a href="#data-preparation-of-real-estate-market-data" id="toc-data-preparation-of-real-estate-market-data" class="nav-link" data-scroll-target="#data-preparation-of-real-estate-market-data"><span class="header-section-number">4</span> Data Preparation of Real Estate Market Data</a>
+  <li><a href="#real-estate-market-visual-analysis" id="toc-real-estate-market-visual-analysis" class="nav-link" data-scroll-target="#real-estate-market-visual-analysis"><span class="header-section-number">4</span> Real Estate Market Visual Analysis</a>
   <ul class="collapse">
-  <li><a href="#case-study-1-housing-market-in-german-cities" id="toc-case-study-1-housing-market-in-german-cities" class="nav-link" data-scroll-target="#case-study-1-housing-market-in-german-cities"><span class="header-section-number">4.1</span> Case Study 1: Housing Market in German Cities</a></li>
+  <li><a href="#types-of-real-estate-market-data" id="toc-types-of-real-estate-market-data" class="nav-link" data-scroll-target="#types-of-real-estate-market-data"><span class="header-section-number">4.1</span> Types of Real Estate Market Data</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">5</span> References</a></li>
   </ul>
@@ -2330,7 +2328,7 @@ border-bottom: none;
 <section id="abstract" class="level1 unnumbered unlisted AuthorNote">
 <h1 class="unnumbered unlisted AuthorNote">Abstract</h1>
 <div class="AbstractFirstParagraph">
-<p>Geospatial visualization provides powerful tools for understanding how location influences economic and social phenomena. In the context of real estate markets, spatial analysis reveals patterns in property values, highlights regional disparities, and supports evidence‑based decision making for investors, policymakers, and consumers. This presentation demonstrates how R can be leveraged to transform raw real estate data into meaningful geographic insights. Using packages such as <strong>sf</strong>, <strong>ggplot2</strong>, and <strong>tmap</strong>, we illustrate methods for preparing spatial datasets, generating maps, and identifying price hotspots across different regions. The workflow emphasizes reproducibility and transparency, ensuring that analyses can be adapted to diverse market contexts. By integrating geospatial visualization into real estate research, stakeholders gain a clearer understanding of market dynamics and can make more informed strategic choices.</p>
+<p>Geospatial visualization provides powerful tools for understanding how location influences economic and social phenomena. In the context of real estate markets, spatial analysis reveals patterns in property values, highlights regional disparities, and supports evidence‑based decision making for investors, policymakers, and consumers. This presentation demonstrates how R can be leveraged to transform raw real estate data into meaningful geographic insights. Using packages like <strong>ggplot2</strong>, we illustrate methods for preparing spatial datasets, generating maps, and identifying price hotspots across different regions. By integrating geospatial visualization into real estate research, there can be a clearer understanding of market dynamics.</p>
 </div>
 <p><em>Keywords</em>: Geospatial visualization, R programming, Real estate market, Spatial analysis, Data visualization</p>
 <br>
@@ -2338,19 +2336,28 @@ border-bottom: none;
 <section id="firstheader" class="level1 title unnumbered unlisted">
 <h1 class="title unnumbered unlisted">Geospatial Visualization with R Using Real Estate Market Data</h1>
 </section>
-<section id="introduction" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<section id="geospatial-information" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Geospatial Information</h1>
 <p>‘’Geospatial data’’ refers to information that specifies the spatial position of something on the Earth’s surface and describes their associated characteristics. It usually combines three parts: the location (such as coordinates on a map), details about the thing or event (its features or characteristics), and time (when it happened or how long it lasted).(<span class="citation" data-cites="IBM">IBM (<a href="#ref-IBM" role="doc-biblioref">2021</a>)</span>).</p>
-<p>‘’Geospatial analytics’’ involves examining geographically referenced data to identify underlying patterns, trends, and meaningful insights.(<span class="citation" data-cites="UMW">Mary Washington (<a href="#ref-UMW" role="doc-biblioref">n.d.</a>)</span>)</p>
-<p>’’Geospatial visualization”</p>
-<section id="principles-of-geospatial-visualization" class="level2" data-number="1.1">
-<h2 data-number="1.1" data-anchor-id="principles-of-geospatial-visualization"><span class="header-section-number">1.1</span> Principles of Geospatial Visualization</h2>
+<p>‘’Geospatial analytics’’ involves examining geographically referenced data to identify underlying patterns, trends, and meaningful insights.(<span class="citation" data-cites="UMW">University of Mary Washington (<a href="#ref-UMW" role="doc-biblioref">n.d.</a>)</span>)</p>
+<p>‘’Geographic Information System’’ is a computer program that examines and presents data with spatial references. (<span class="citation" data-cites="USGS">U.S. Geological Survey (<a href="#ref-USGS" role="doc-biblioref">n.d.</a>)</span>)</p>
 </section>
-<section id="examples-of-geospatial-visualization" class="level2" data-number="1.2">
-<h2 data-number="1.2" data-anchor-id="examples-of-geospatial-visualization"><span class="header-section-number">1.2</span> Examples of Geospatial Visualization</h2>
+<section id="gis-in-property-valuation" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> GIS in property valuation</h1>
+<p>Geographic Information Systems (GIS) have become a key tool in modern property valuation, helping to address the biases and shortcomings of old appraisal methods. By combining spatial data with hedonic models, automated valuation models, and artificial intelligence, GIS improves the accuracy, clarity, and speed of real estate market analysis.(<span class="citation" data-cites="ISPRS">Droj et al. (<a href="#ref-ISPRS" role="doc-biblioref">2024</a>)</span>)</p>
 </section>
-<section id="types-of-real-estate-market-data" class="level2" data-number="1.3">
-<h2 data-number="1.3" data-anchor-id="types-of-real-estate-market-data"><span class="header-section-number">1.3</span> Types of Real Estate Market Data</h2>
+<section id="spatial-evaluation-methods" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Spatial evaluation methods</h1>
+<section id="spatial-econometric-techniques" class="level2" data-number="3.1">
+<h2 data-number="3.1" data-anchor-id="spatial-econometric-techniques"><span class="header-section-number">3.1</span> Spatial Econometric techniques</h2>
+<p>There are three main types of spatial econometric methods. The first is the Spatial Lag Model, which looks at how nearby property prices affect each other. The second is the Spatial Error Model, which helps fix problems caused by similar patterns in errors across different areas. The third is the Spatial Durbin Model, which considers how both the outcome and the factors influencing it are affected by nearby areas.(<span class="citation" data-cites="ICCSA">Muccio and Cannatella (<a href="#ref-ICCSA" role="doc-biblioref">2025</a>)</span>)</p>
+</section>
+</section>
+<section id="real-estate-market-visual-analysis" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Real Estate Market Visual Analysis</h1>
+<p>Machine learning can be used to analyze different real estate market data. It helps to easily analyze correlations and relationships within different variables across different market data. It allows for easier understanding of emerging and growing trends.(<span class="citation" data-cites="regensburg">Lorenz et al. (<a href="#ref-regensburg" role="doc-biblioref">2022</a>)</span>)</p>
+<section id="types-of-real-estate-market-data" class="level2" data-number="4.1">
+<h2 data-number="4.1" data-anchor-id="types-of-real-estate-market-data"><span class="header-section-number">4.1</span> Types of Real Estate Market Data</h2>
 <ul>
 <li>Property Listings Data (addresses, prices, property type, size)</li>
 <li>Rental Market Data (monthly rent, vacancy rates, neighborhood attributes)</li>
@@ -2361,28 +2368,26 @@ border-bottom: none;
 </ul>
 </section>
 </section>
-<section id="tools-in-r" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Tools in R</h1>
-</section>
-<section id="visualization-techniques" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Visualization Techniques</h1>
-<pre><code>Basic maps: plotting property points on a map.</code></pre>
-<p>• Choropleth maps: shading regions by average price. • Heatmaps: density of listings or price hotspots. • Example R snippet:</p>
-</section>
-<section id="data-preparation-of-real-estate-market-data" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Data Preparation of Real Estate Market Data</h1>
-<section id="case-study-1-housing-market-in-german-cities" class="level2" data-number="4.1">
-<h2 data-number="4.1" data-anchor-id="case-study-1-housing-market-in-german-cities"><span class="header-section-number">4.1</span> Case Study 1: Housing Market in German Cities</h2>
-</section>
-</section>
 <section id="references" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-ISPRS" class="csl-entry" role="listitem">
+Droj, G., Kwartnik-Pruc, A., &amp; Droj, L. (2024). A comprehensive overview regarding the impact of GIS on property valuation. <em>ISPRS International Journal of Geo-Information</em>, <em>13</em>(6), 175. https://doi.org/<a href="https://doi.org/10.3390/ijgi13060175">https://doi.org/10.3390/ijgi13060175</a>
+</div>
 <div id="ref-IBM" class="csl-entry" role="listitem">
 IBM. (2021). <em>What is geospatial data?</em> <a href="https://www.ibm.com/think/topics/geospatial-data" class="uri">https://www.ibm.com/think/topics/geospatial-data</a>.
 </div>
+<div id="ref-regensburg" class="csl-entry" role="listitem">
+Lorenz, F., Willwersch, J., Cajias, M., &amp; Franz, F. (2022). Interpretable machine learning for real estate market analysis. <em>Real Estate Economics</em>. <a href="https://doi.org/10.1111/1540-6229.12389">https://doi.org/10.1111/1540-6229.12389</a>
+</div>
+<div id="ref-ICCSA" class="csl-entry" role="listitem">
+Muccio, E., &amp; Cannatella, D. (2025). Mapping real estate values: A semi-systematic literature review of spatial evaluation methods and approaches. <em>Lecture Notes in Computer Science</em>, 215–229. <a href="https://doi.org/10.1007/978-3-031-97645-2_16">https://doi.org/10.1007/978-3-031-97645-2_16</a>
+</div>
 <div id="ref-UMW" class="csl-entry" role="listitem">
-Mary Washington, U. of. (n.d.). <em>Https://cas.umw.edu/gis/</em>. <a href="https://cas.umw.edu/gis/" class="uri">https://cas.umw.edu/gis/</a>.
+University of Mary Washington. (n.d.). <em>What IS geospatial analysis?</em> <a href="https://cas.umw.edu/gis/" class="uri">https://cas.umw.edu/gis/</a>.
+</div>
+<div id="ref-USGS" class="csl-entry" role="listitem">
+U.S. Geological Survey. (n.d.). <em>What is a geographic information system (GIS)?</em> <a href="https://www.usgs.gov/faqs/what-a-geographic-information-system-gis" class="uri">https://www.usgs.gov/faqs/what-a-geographic-information-system-gis</a>.
 </div>
 </div>
 <!-- -->
@@ -2835,92 +2840,83 @@ Mary Washington, U. of. (n.d.). <em>Https://cas.umw.edu/gis/</em>. <a href="http
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Geospatial Visualization with R Using Real Estate Market Data&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"> - name: &quot;Idelle Sablay&quot;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">   affiliations: &quot;Fresenius University of Applied Sciences&quot;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">   email: &quot;sablay.idelle@stud.hs-fresenius.de&quot;</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">   corresponding: true</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">   </span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="an">abstract:</span><span class="co"> </span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">  &quot;Geospatial visualization provides powerful tools for understanding how location influences economic and social phenomena. In the context of real estate markets, spatial analysis reveals patterns in property values, highlights regional disparities, and supports evidence‑based decision making for investors, policymakers, and consumers. This presentation demonstrates how R can be leveraged to transform raw real estate data into meaningful geographic insights. Using packages such as **sf**, **ggplot2**, and **tmap**, we illustrate methods for preparing spatial datasets, generating maps, and identifying price hotspots across different regions. The workflow emphasizes reproducibility and transparency, ensuring that analyses can be adapted to diverse market contexts. By integrating geospatial visualization into real estate research, stakeholders gain a clearer understanding of market dynamics and can make more informed strategic choices.&quot;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="an">keywords:</span><span class="co"> </span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - Geospatial visualization</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - R programming</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - Real estate market</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">  - Spatial analysis</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">  - Data visualization</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">  apaquarto-html: </span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: left</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co">  apaquarto-pdf:</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="an">navbar:</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co">  left:</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co">    - text: &quot;Handout (HTML)&quot;</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co">      href: handout.html</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co">    - text: &quot;Handout (PDF)&quot;</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="co">      href: handout.pdf</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co">    - text: &quot;Presentation&quot;</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co">      href: presentation.html</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> References.bib</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>&#39;&#39;Geospatial data&#39;&#39; refers to information that specifies the spatial position of something on the Earth’s surface and describes their associated characteristics. It usually combines three parts: the location (such as coordinates on a map), details about the thing or event (its features or characteristics), and time (when it happened or how long it lasted).(@IBM).</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>&#39;&#39;Geospatial analytics&#39;&#39; involves examining geographically referenced data to identify underlying patterns, trends, and meaningful insights.(@UMW)</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>&#39;&#39;Geospatial visualization&quot; </span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Principles of Geospatial Visualization</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## Examples  of Geospatial Visualization</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## Types of Real Estate Market Data</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Property Listings Data (addresses, prices, property type, size)</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rental Market Data (monthly rent, vacancy rates, neighborhood attributes)</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Transaction History (sale dates, prices, buyer/seller info)</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Geographic/Demographic Data (census, income levels, population density)</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Construction &amp; Development Data (new projects, zoning, permits)</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Mortgage &amp; Interest Rate Data (loan terms, rate trends)</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="fu"># Tools in R</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="fu"># Visualization Techniques</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="in">    Basic maps: plotting property points on a map.</span></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>•   Choropleth maps: shading regions by average price.</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>•   Heatmaps: density of listings or price hotspots.</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>•   Example R snippet:</span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data Preparation of Real Estate Market Data</span></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="fu">## Case Study 1: Housing Market in German Cities </span></span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="fu"># References</span></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Geospatial Visualization with R Using Real Estate Market Data&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"> - name: &quot;Idelle Sablay&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">   affiliations: &quot;Fresenius University of Applied Sciences&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">   email: &quot;sablay.idelle@stud.hs-fresenius.de&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">   corresponding: true</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">   </span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="an">abstract:</span><span class="co"> </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">  &quot;Geospatial visualization provides powerful tools for understanding how location influences economic and social phenomena. In the context of real estate markets, spatial analysis reveals patterns in property values, highlights regional disparities, and supports evidence‑based decision making for investors, policymakers, and consumers. This presentation demonstrates how R can be leveraged to transform raw real estate data into meaningful geographic insights. Using packages like **ggplot2**, we illustrate methods for preparing spatial datasets, generating maps, and identifying price hotspots across different regions. By integrating geospatial visualization into real estate research, there can be a clearer understanding of market dynamics.&quot;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="an">keywords:</span><span class="co"> </span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - Geospatial visualization</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - R programming</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - Real estate market</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">  - Spatial analysis</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">  - Data visualization</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">  apaquarto-html: </span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: left</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">  apaquarto-pdf:</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="an">navbar:</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">  left:</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">    - text: &quot;Handout (HTML)&quot;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">      href: handout.html</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">    - text: &quot;Handout (PDF)&quot;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">      href: handout.pdf</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co">    - text: &quot;Presentation&quot;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">      href: presentation.html</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> References.bib</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu"># Geospatial Information</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>&#39;&#39;Geospatial data&#39;&#39; refers to information that specifies the spatial position of something on the Earth’s surface and describes their associated characteristics. It usually combines three parts: the location (such as coordinates on a map), details about the thing or event (its features or characteristics), and time (when it happened or how long it lasted).(@IBM).</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>&#39;&#39;Geospatial analytics&#39;&#39; involves examining geographically referenced data to identify underlying patterns, trends, and meaningful insights.(@UMW)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>&#39;&#39;Geographic Information System&#39;&#39; is a computer program that examines and presents data with spatial references. (@USGS)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu"># GIS in property valuation</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>Geographic Information Systems (GIS) have become a key tool in modern property valuation, helping to address the biases and shortcomings of old appraisal methods. By combining spatial data with hedonic models, automated valuation models, and artificial intelligence, GIS improves the accuracy, clarity, and speed of real estate market analysis.(@ISPRS)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu"># Spatial evaluation methods</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## Spatial Econometric techniques </span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>There are three main types of spatial econometric methods. The first is the Spatial Lag Model, which looks at how nearby property prices affect each other. The second is the Spatial Error Model, which helps fix problems caused by similar patterns in errors across different areas. The third is the Spatial Durbin Model, which considers how both the outcome and the factors influencing it are affected by nearby areas.(@ICCSA)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="fu"># Real Estate Market Visual Analysis</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>Machine learning can be used to analyze different real estate market data. It helps to easily analyze correlations and relationships within different variables across different market data. It allows for easier understanding of emerging and growing trends.(@regensburg)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Types of Real Estate Market Data</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Property Listings Data (addresses, prices, property type, size)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rental Market Data (monthly rent, vacancy rates, neighborhood attributes)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Transaction History (sale dates, prices, buyer/seller info)</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Geographic/Demographic Data (census, income levels, population density)</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Construction &amp; Development Data (new projects, zoning, permits)</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Mortgage &amp; Interest Rate Data (loan terms, rate trends)</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="fu"># References</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

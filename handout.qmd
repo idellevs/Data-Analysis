@@ -8,7 +8,7 @@ author:
    corresponding: true
    
 abstract: 
-  "Geospatial visualization provides powerful tools for understanding how location influences economic and social phenomena. In the context of real estate markets, spatial analysis reveals patterns in property values, highlights regional disparities, and supports evidence‑based decision making for investors, policymakers, and consumers. This presentation demonstrates how R can be leveraged to transform raw real estate data into meaningful geographic insights. Using packages such as **sf**, **ggplot2**, and **tmap**, we illustrate methods for preparing spatial datasets, generating maps, and identifying price hotspots across different regions. The workflow emphasizes reproducibility and transparency, ensuring that analyses can be adapted to diverse market contexts. By integrating geospatial visualization into real estate research, stakeholders gain a clearer understanding of market dynamics and can make more informed strategic choices."
+  "Geospatial visualization provides powerful tools for understanding how location influences economic and social phenomena. In the context of real estate markets, spatial analysis reveals patterns in property values, highlights regional disparities, and supports evidence‑based decision making for investors, policymakers, and consumers. This presentation demonstrates how R can be leveraged to transform raw real estate data into meaningful geographic insights. Using packages like **ggplot2**, we illustrate methods for preparing spatial datasets, generating maps, and identifying price hotspots across different regions. By integrating geospatial visualization into real estate research, there can be a clearer understanding of market dynamics."
   
 keywords: 
   - Geospatial visualization
@@ -42,20 +42,27 @@ bibliography: References.bib
 
 
 ---
-# Introduction
+# Geospatial Information
 
 ''Geospatial data'' refers to information that specifies the spatial position of something on the Earth’s surface and describes their associated characteristics. It usually combines three parts: the location (such as coordinates on a map), details about the thing or event (its features or characteristics), and time (when it happened or how long it lasted).(@IBM).
 
 ''Geospatial analytics'' involves examining geographically referenced data to identify underlying patterns, trends, and meaningful insights.(@UMW)
 
+''Geographic Information System'' is a computer program that examines and presents data with spatial references. (@USGS)
 
+# GIS in property valuation
 
-## Principles of Geospatial Visualization
+Geographic Information Systems (GIS) have become a key tool in modern property valuation, helping to address the biases and shortcomings of old appraisal methods. By combining spatial data with hedonic models, automated valuation models, and artificial intelligence, GIS improves the accuracy, clarity, and speed of real estate market analysis.(@ISPRS)
 
+# Spatial evaluation methods
 
-## Examples  of Geospatial Visualization
+## Spatial Econometric techniques 
 
+There are three main types of spatial econometric methods. The first is the Spatial Lag Model, which looks at how nearby property prices affect each other. The second is the Spatial Error Model, which helps fix problems caused by similar patterns in errors across different areas. The third is the Spatial Durbin Model, which considers how both the outcome and the factors influencing it are affected by nearby areas.(@ICCSA)
 
+# Real Estate Market Visual Analysis
+
+Machine learning can be used to analyze different real estate market data. It helps to easily analyze correlations and relationships within different variables across different market data. It allows for easier understanding of emerging and growing trends.(@regensburg)
 
 ## Types of Real Estate Market Data
 
@@ -65,21 +72,6 @@ bibliography: References.bib
 - Geographic/Demographic Data (census, income levels, population density)
 - Construction & Development Data (new projects, zoning, permits)
 - Mortgage & Interest Rate Data (loan terms, rate trends)
-
-# Tools in R
-# Visualization Techniques
-
-	Basic maps: plotting property points on a map.
-• 	Choropleth maps: shading regions by average price.
-• 	Heatmaps: density of listings or price hotspots.
-• 	Example R snippet:
-
-
-# Data Preparation of Real Estate Market Data
-
-## Case Study 1: Housing Market in German Cities 
-
-dgdfgdfgdg
 
 # References
 
