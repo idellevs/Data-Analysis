@@ -116,7 +116,7 @@ ggplot(df_long, aes(x = date, y = Price, color = City, group = City)) +
 
 Step 1: Download raw OSM data (osm.pbf) or shapefiles (.shp.zip)
 
-![Geoboundaries](geoboundaries.png){width=80% length=50% fig-align="center"}
+![Geoboundaries](geoboundaries.png)
 
 https://www.geoboundaries.org/index.html
 
@@ -182,7 +182,7 @@ ggplot(map_data) +
 ## Exercise
 Load the real estate market data in the Q2 2025. What are the changes?
 
-![Geospatial Visualization](Geospatial visual q2.png){width=80% length=50% fig-align="center"}
+![Geospatial Visualization](Geospatial visual q2.png)
 
 
 # Thank you!
