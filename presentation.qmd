@@ -118,7 +118,7 @@ Step 1: Download raw OSM data (osm.pbf) or shapefiles (.shp.zip)
 
 ![Geoboundaries](geoboundaries.png){width=80% length=50% fig-align="center"}
 
-https://download.geofabrik.de/
+https://www.geoboundaries.org/index.html
 
 ---
 
@@ -182,7 +182,7 @@ ggplot(map_data) +
 ## Exercise
 Load the real estate market data in the Q2 2025. What are the changes?
 
-![Geospatial Visualization](geospatial visual q2.png){width=80% length=50% fig-align="center"}
+![Geospatial Visualization](Geospatial visual q2.png){width=80% length=50% fig-align="center"}
 
 
 # Thank you!
